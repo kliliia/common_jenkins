@@ -15,7 +15,6 @@ node('master'){
       unzip terraform_0.11.11_linux_amd64.zip
       mv terraform /bin
       """
-      throw
     }
   }
 }
