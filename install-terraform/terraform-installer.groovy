@@ -1,7 +1,7 @@
 import hudson.EnvVars
 
 node('master'){
-  stage('Install the terraform') {
+  stage('Check terraform') {
 
     try {
 
@@ -13,12 +13,15 @@ node('master'){
       """
 
     } catch(er) {
-      sh """
-      wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
-      yum install unzip -y
-      unzip terraform_0.11.11_linux_amd64.zip
-      mv terraform /bin
-      """
+       stage('Installing Terraform') {
+         sh """
+         wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
+         yum install unzip -y
+         unzip terraform_0.11.11_linux_amd64.zip
+         mv terraform /bin
+         """
+
+       }
     }
   }
 }
