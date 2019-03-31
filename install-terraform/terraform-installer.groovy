@@ -5,7 +5,7 @@ node('master'){
 
       stage('Check for terraform') {
         env.terraform  = sh returnStdout: true, script: 'terraform --version'
-        if (env.terraform) { sh "echo Terraform already installed version ${env.terraform}" }
+        sh "echo Terraform already installed version ${env.terraform}" 
       }
 
     } catch(er) {
