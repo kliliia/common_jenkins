@@ -6,11 +6,11 @@ node('master'){
     try {
 
       env.terraform  = sh returnStdout: true, script: 'terraform --version'
-      echo "
+      echo """
 
       echo Terraform already installed version ${env.terraform}
 
-      "
+      """
 
     } catch(er) {
       sh """
