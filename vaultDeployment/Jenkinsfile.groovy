@@ -27,7 +27,6 @@ node('master') {
       if (params.terraformPlan) {
         dir("${workspace}/vaultDeployment/") {
         sh "terraform plan -var-file=vault.tfvars"
-          }
         }
       } else if (params.terraformApply) {
                dir("${workspace}/vaultDeployment/") {
@@ -43,4 +42,5 @@ node('master') {
               Please provide correct option (plan/apply/destroy)
               """)
       }
+    }
 }
