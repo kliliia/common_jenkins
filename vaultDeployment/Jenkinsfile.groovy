@@ -33,12 +33,6 @@ node('master') {
           echo "##### Terraform Plan (Check) the Changes ####"
           sh "terraform plan -var-file=vault.tfvars"
         }
-    } 
-    // else {
-    //     println("""
-    //           Sorry I don`t understand ${params.terraformPlan}!!!
-    //           Please provide correct option (plan/apply/destroy)
-    //           """)
-    //     }
+      } 
     }
 }
