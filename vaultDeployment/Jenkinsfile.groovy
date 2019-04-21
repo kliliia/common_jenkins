@@ -23,9 +23,11 @@ node('master') {
         sh "terraform init"
       }
     stage("Terraform Plan/Apply/Destroy"){
-      if (params.terraformPlan) {
-        dir("${workspace}/vaultDeployment/") {
-          sh "terraform plan -var-file=vault.tfvars"
+      if (!params.terraformApply) {
+        if (params.terraformPlan) {
+          dir("${workspace}/vaultDeployment/") {
+            sh "terraform plan -var-file=vault.tfvars"
+          }
         }
       } else if (!params.terraformDestroy) {
       if (params.terraformApply) {
