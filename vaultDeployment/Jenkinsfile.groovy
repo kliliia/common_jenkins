@@ -28,7 +28,7 @@ node('master') {
           echo "##### Terraform Applying the Changes ####"
           sh "terraform apply  --auto-approve  -var-file=vault.tfvars"
         }
-    } else if {
+    } else {
         dir("${WORKSPACE}/vaultDeployment/") {
           echo "##### Terraform Plan (Check) the Changes ####"
           sh "terraform plan -var-file=vault.tfvars"
