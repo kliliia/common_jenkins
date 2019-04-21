@@ -22,6 +22,7 @@ node('master') {
       dir("${workspace}/vaultDeployment/") {
         sh "terraform init"
       }
+    }
     stage("Terraform Plan/Apply/Destroy"){
       if (!params.terraformApply) {
         if (params.terraformPlan) {
@@ -52,6 +53,4 @@ node('master') {
               Please provide correct option (plan/apply/destroy)
               """)
       }
-    }
-  }
 }
