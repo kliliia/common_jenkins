@@ -32,10 +32,10 @@ node('master') {
           }
         }
       } else if (!params.terraformPlan) {
-    if (!params.terraformDestroy) {
-      if (params.terraformApply) {
-        dir("${workspace}/vaultDeployment/") {
-        sh "terraform apply --auto-approve -var-file=vault.tfvars"
+               if (!params.terraformDestroy) {
+                 if (params.terraformApply) {
+                   dir("${workspace}/vaultDeployment/") {
+                   sh "terraform apply --auto-approve -var-file=vault.tfvars"
             }
           }
         }
