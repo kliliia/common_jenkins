@@ -23,15 +23,15 @@ node('master') {
         sh "terraform init"
       }
     stage("Terraform Plan/Apply/Destroy"){
-      if (params.terraformPlan.toLowerCase() == 'plan') {
+      if (params.terraformPlan) {
         dir("${workspace}/vaultDeployment/") {
           sh "terraform plan -var-file=vault.tfvars"
         }
-      } else if (params.terraformPlan.toLowerCase() == 'apply') {
+      } else if (params.terraformApply) {
           dir("${workspace}/vaultDeployment/") {
             sh "terraform apply --auto-approve -var-file=vault.tfvars"
           }
-        } else if (params.terraformPlan.toLowerCase() == 'destroy') {
+        } else if (params.terraformDestroy) {
          dir("${workspace}/vaultDeployment/") {
             sh "terraform destroy --auto-approve -var-file=vault.tfvars"
           }
