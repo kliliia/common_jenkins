@@ -4,8 +4,10 @@ import groovy.json.JsonSlurper
 
 node('master') {
   properties([parameters([
-    string(defaultValue: 'plan', description: 'Please provide what action you want? (plan,apply,destroy)', name: 'terraformPlan', trim: true),
-    string(defaultValue: 'default_token_add_here', description: 'Please provide a token for vault', name: 'vault_token', trim: true)
+    booleanParam(defaultValue: false, description: 'Plan before apply', name: 'terraformPlan'), 
+    booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'), 
+    booleanParam(defaultValue: false, description: 'Destroy All', name: 'terraformDestroy'), 
+    string(defaultValue: 'default_token', description: 'Please provide a token for vault', name: 'vault_token', trim: true)
     ]
     )])
     checkout scm
