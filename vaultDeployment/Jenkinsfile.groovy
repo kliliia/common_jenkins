@@ -27,18 +27,23 @@ node('master') {
         if (params.terraformPlan) {
           dir("${workspace}/vaultDeployment/") {
             sh "terraform plan -var-file=vault.tfvars"
-          }
-        }
-      } else if (!params.terraformDestroy) {
-      if (params.terraformApply) {
-          dir("${workspace}/vaultDeployment/") {
-            sh "terraform apply --auto-approve -var-file=vault.tfvars"
             }
           }
-        } else if (!params.terraformApply) {
+        }
+      } else if (!params.terraformPlan) {
+    if (!params.terraformDestroy) {
+      if (params.terraformApply) {
+        dir("${workspace}/vaultDeployment/") {
+        sh "terraform apply --auto-approve -var-file=vault.tfvars"
+            }
+          }
+        }
+      } else if (!params.terraformApply) {
+    if (!params.terraformPlan) {
       if (params.terraformDestroy) {
          dir("${workspace}/vaultDeployment/") {
             sh "terraform destroy --auto-approve -var-file=vault.tfvars"
+            }
           }
         }
       } else {
