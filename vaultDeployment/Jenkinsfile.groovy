@@ -5,8 +5,7 @@ import groovy.json.JsonSlurper
 node('master') {
   properties([parameters([
     booleanParam(defaultValue: false, description: 'Plan before apply', name: 'terraformPlan'), 
-    booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'), 
-    booleanParam(defaultValue: false, description: 'Destroy All', name: 'terraformDestroy'), 
+    booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'),  
     string(defaultValue: 'default_token', description: 'Please provide a token for vault', name: 'vault_token', trim: true)
     ]
     )])
@@ -23,24 +22,22 @@ node('master') {
         sh "terraform init"
       }
     }
-    stage("Terraform Plan/Apply/Destroy"){
-      if (params.terraformPlan) {
-        dir("${workspace}/vaultDeployment/") {
-        sh "terraform plan -var-file=vault.tfvars"
+    stage('Terraform Apply/Plan') {
+      if (params.terraformApply) {
+        dir("${WORKSPACE}/vaultDeployment/") {
+          echo "##### Terraform Applying the Changes ####"
+          sh "terraform apply  --auto-approve  -var-file=vault.tfvars"
         }
-      } else if (params.terraformApply) {
-               dir("${workspace}/vaultDeployment/") {
-               sh "terraform apply --auto-approve -var-file=vault.tfvars"
+    } else {
+        dir("${WORKSPACE}/vaultDeployment/") {
+          echo "##### Terraform Plan (Check) the Changes ####"
+          sh "terraform plan -var-file=vault.tfvars"
+            }
         }
-      } else if (params.terraformDestroy) {
-               dir("${workspace}/vaultDeployment/") {
-               sh "terraform destroy --auto-approve -var-file=vault.tfvars"
-        }
-      } else {
+    } else {
         println("""
               Sorry I don`t understand ${params.terraformPlan}!!!
               Please provide correct option (plan/apply/destroy)
               """)
-      }
     }
 }
