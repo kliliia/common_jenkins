@@ -18,7 +18,7 @@ node('master') {
         namespace             = "${namespace}"
 
         """
-      } 
+      }
     stage("Terraform init") {
       dir("${workspace}/") {
         sh "terraform init"
