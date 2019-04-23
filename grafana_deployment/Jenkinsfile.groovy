@@ -10,9 +10,12 @@ node('master') {
     string(defaultValue: 'test', description: 'please provide namespace', name: 'namespace', trim: true)
     ]
     )])
-    checkout scm
+    stage('Checkout SCM') {
+      git 'https://github.com/fuchicorp/terraform.git'
+   }
+    
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/grafana_deployment/grafana.tfvars")
+        def file = new File("${WORKSPACE}/google_grafana/grafana.tfvars")
         file.write """
         password              =  "${password}"
         namespace             = "${namespace}"
@@ -20,18 +23,18 @@ node('master') {
         """
       }
     stage("Terraform init") {
-      dir("${WORKSPACE}/grafana_deployment/") {
+      dir("${WORKSPACE}/google_grafana/") {
         sh "terraform init"
       }
     }
     stage('Terraform Apply/Plan') {
       if (params.terraformApply) {
-        dir("${WORKSPACE}/grafana_deployment/") {
+        dir("${WORKSPACE}/google_grafana/") {
           echo "##### Terraform Applying the Changes ####"
           sh "terraform apply  --auto-approve  -var-file=grafana.tfvars"
         }
     } else {
-        dir("${WORKSPACE}/grafana_deployment/") {
+        dir("${WORKSPACE}/google_grafana/") {
           echo "##### Terraform Plan (Check) the Changes ####"
           sh "terraform plan -var-file=grafana.tfvars"
       } 
@@ -39,7 +42,7 @@ node('master') {
 }
     stage('Terraform Destoy') {
       if (params.terraformDestroy) {
-        dir("${WORKSPACE}/grafana_deployment/") {
+        dir("${WORKSPACE}/google_grafana/") {
           echo "##### Terraform Destroying the Changes ####"
           sh "terraform destroy  --auto-approve  -var-file=grafana.tfvars"
         }
