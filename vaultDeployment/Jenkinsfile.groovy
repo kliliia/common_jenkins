@@ -24,10 +24,12 @@ node('master') {
       }
     }
     stage('Terraform Apply/Plan') {
-      if (params.terraformApply) {
-        dir("${WORKSPACE}/vaultDeployment/") {
-          echo "##### Terraform Applying the Changes ####"
-          sh "terraform apply  --auto-approve  -var-file=vault.tfvars"
+      if (!params.terraformDestroy){
+        if (params.terraformApply) {
+          dir("${WORKSPACE}/vaultDeployment/") {
+            echo "##### Terraform Applying the Changes ####"
+            sh "terraform apply  --auto-approve  -var-file=vault.tfvars"
+          }
         }
     } else {
         dir("${WORKSPACE}/vaultDeployment/") {
