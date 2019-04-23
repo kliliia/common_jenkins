@@ -26,14 +26,14 @@ node('master') {
         stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/grafanaDeployment/") {
+          dir("${workspace}/vaultDeployment/") {
             echo "##### Terraform Applying the Changes ####"
-            sh "terraform apply --auto-approve -var-file=grafana.tfvars"
+            sh "terraform apply --auto-approve -var-file=vault.tfvars"
         }
       } else {
-          dir("${WORKSPACE}/grafanaDeployment") {
+          dir("${WORKSPACE}/vaultDeployment") {
             echo "##### Terraform Plan (Check) the Changes ####"
-            sh "terraform plan -var-file=grafana.tfvars"
+            sh "terraform plan -var-file=vault.tfvars"
           }
         }
       } 
@@ -41,9 +41,9 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/grafanaDeployment") {
+          dir("${WORKSPACE}/vaultDeployment") {
             echo "##### Terraform Destroying ####"
-            sh "terraform destroy --auto-approve -var-file=grafana.tfvars"
+            sh "terraform destroy --auto-approve -var-file=vault.tfvars"
           }
         } 
       }
