@@ -1,7 +1,7 @@
 resource "kubernetes_secret" "vault_secret" {
   metadata {
     name      = "vault-secret"
-    namespace = "tools"
+    namespace = "${var.namespace}"
   }
 
   data {
@@ -16,7 +16,7 @@ resource "kubernetes_persistent_volume_claim" "vault_pvc" {
 
   metadata {
     name      = "vault-pvc"
-    namespace = "tools"
+    namespace = "${var.namespace}"
 
     labels {
       app = "vault-deployment"
@@ -39,7 +39,7 @@ resource "kubernetes_deployment" "vault" {
 
   metadata {
     name      = "vault"
-    namespace = "tools"
+    namespace = "${var.namespace}"
 
     labels {
       app = "vault-deployment"
@@ -112,7 +112,7 @@ resource "kubernetes_service" "vault_service" {
 
   metadata {
     name      = "vault-service"
-    namespace = "tools"
+    namespace = "${var.namespace}"
   }
 
   spec {

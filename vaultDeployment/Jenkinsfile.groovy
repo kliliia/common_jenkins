@@ -5,7 +5,8 @@ import groovy.json.JsonSlurper
 node('master') {
   properties([parameters([
     booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'),  
-    string(defaultValue: 'default_token', description: 'Please provide a token for vault', name: 'vault_token', trim: true)
+    string(defaultValue: 'default_token', description: 'Please provide a token for vault', name: 'vault_token', trim: true),
+    string(defaultValue: 'test', description: 'Please provide namespace for vault-deployment', name: 'namespace', trim: true)
     ]
     )])
     checkout scm
@@ -13,6 +14,7 @@ node('master') {
         def file = new File("${WORKSPACE}/vaultDeployment/vault.tfvars")
         file.write """
         vault_token              =  "${vault_token}"
+        namespace                =  "${namespace}"
 
         """
       }
@@ -34,4 +36,22 @@ node('master') {
         }
       } 
     }
+    stage('Terraform Destroy') {
+      if (!params.terraformApply) {
+        if (params.terraformDestroy) {
+          dir("${WORKSPACE}/vaultDeployment") {
+            echo "##### Terraform Destroying ####"
+            sh "terraform destroy --auto-approve -var-file=vault.tfvars"
+          }
+        } 
+      }
+    }
+       if (params.terraformDestroy) {
+         if (params.terraformApply) {
+           println("""
+           Sorry you can not destroy and apply at the same time
+           """)
+        }
+    }
+ }
 }
