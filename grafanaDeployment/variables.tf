@@ -1,2 +1,0 @@
-variable    "password"   {}
-variable    "namespace"  {}
