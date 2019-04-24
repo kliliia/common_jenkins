@@ -9,27 +9,29 @@ node('master') {
     string(defaultValue: 'test', description: 'Please provide namespace for nexus-deployment', name: 'namespace', trim: true)
     ]
     )])
-    checkout scm
+    stage('Checkout SCM') {
+      git branch: 'andrey', url: 'https://github.com/fuchicorp/terraform.git'
+
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/nexus_jenkins/nexus.tfvars")
+        def file = new File("${WORKSPACE}/nexus/nexus.tfvars")
         file.write """
         namespace             =  "${namespace}"
         """
       }
     stage("Terraform init") {
-      dir("${workspace}/nexus_jenkins/") {
+      dir("${workspace}/nexus/") {
         sh "terraform init"
       }
     }
     stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/nexus_jenkins/") {
+          dir("${workspace}/nexus/") {
             echo "##### Terraform Applying the Changes ####"
             sh "terraform apply --auto-approve -var-file=nexus.tfvars"
         }
       } else {
-          dir("${WORKSPACE}/nexus_jenkins") {
+          dir("${WORKSPACE}/nexus") {
             echo "##### Terraform Plan (Check) the Changes ####"
             sh "terraform plan -var-file=nexus.tfvars"
           }
@@ -39,7 +41,7 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/nexus_jenkins") {
+          dir("${WORKSPACE}/nexus") {
             echo "##### Terraform Destroying ####"
             sh "terraform destroy --auto-approve -var-file=nexus.tfvars"
           }
