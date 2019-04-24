@@ -15,7 +15,7 @@ node('master') {
     node {
     stage('Send notification') 
     slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', 
-    message: 'The awdawd job is build success ', token: 'yaNnXVu4qycKGgcI5M2O5XqI'
+    message: 'The nexus job is build success ', token: 'yaNnXVu4qycKGgcI5M2O5XqI'
     echo 'Hello'
   } 
     stage('Generate Vars') {
