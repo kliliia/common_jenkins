@@ -11,7 +11,7 @@ node('master') {
     )])
     stage('Checkout SCM') {
       git branch: 'andrey', url: 'https://github.com/fuchicorp/terraform.git'
-    }
+    }  
     stage('Generate Vars') {
         def file = new File("${WORKSPACE}/nexus/nexus.tfvars")
         file.write """
