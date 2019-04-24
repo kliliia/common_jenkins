@@ -13,25 +13,25 @@ node('master') {
       git 'https://github.com/fuchicorp/terraform.git'
     }  
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/nexus/nexus.tfvars")
+        def file = new File("${WORKSPACE}/google_nexus/nexus.tfvars")
         file.write """
         namespace             =  "${namespace}"
         """
       }
     stage("Terraform init") {
-      dir("${workspace}/nexus/") {
+      dir("${workspace}/google_nexus/") {
         sh "terraform init"
       }
     }
     stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/nexus/") {
+          dir("${workspace}/google_nexus/") {
             echo "##### Terraform Applying the Changes ####"
             sh "terraform apply --auto-approve -var-file=nexus.tfvars"
         }
       } else {
-          dir("${WORKSPACE}/nexus") {
+          dir("${WORKSPACE}/google_nexus") {
             echo "##### Terraform Plan (Check) the Changes ####"
             sh "terraform plan -var-file=nexus.tfvars"
           }
