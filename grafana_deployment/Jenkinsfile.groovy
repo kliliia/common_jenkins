@@ -12,8 +12,7 @@ node('master') {
     )])
     stage('Checkout SCM') {
       git 'https://github.com/fuchicorp/terraform.git'
-   }
-    
+   }   
     stage('Generate Vars') {
         def file = new File("${WORKSPACE}/google_grafana/grafana.tfvars")
         file.write """
@@ -50,3 +49,9 @@ node('master') {
     }
 }
 
+  node {
+    stage('Send notification') 
+    slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', 
+    message: 'Mrs.Nadira deployed her code! Yay! ', token: 'yaNnXVu4qycKGgcI5M2O5XqI'
+    echo 'Hello'
+}
