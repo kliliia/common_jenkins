@@ -11,7 +11,13 @@ node('master') {
     )])
     stage('Checkout SCM') {
       git 'https://github.com/fuchicorp/terraform.git'
-    }  
+    }
+    node {
+    stage('Send notification') 
+    slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', 
+    message: 'The awdawd job is build success ', token: 'yaNnXVu4qycKGgcI5M2O5XqI'
+    echo 'Hello'
+  } 
     stage('Generate Vars') {
         def file = new File("${WORKSPACE}/google_nexus/nexus.tfvars")
         file.write """
