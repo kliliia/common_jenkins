@@ -13,14 +13,14 @@ node('master') {
       git 'https://github.com/fuchicorp/terraform.git'
     } 
 
-    stage("slack")
-    {
-      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'nexus build is success', tokenCredentialId: 'slack-token'
-    }
     stage("Sending slack notification")
     {
+      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Nexus build is successfull', tokenCredentialId: 'slack-token'
+    }
+    stage("Sending slack notification with credentials")
+    {
       withCredentials([string(credentialsId: 'slack-token', variable: 'SLACKTOKEN')]) {
-        slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', message: 'The nexus job is build success', tokenCredentialId: "slack-token"
+        slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', message: 'The nexus job is build success', tokenCredentialId: "$SLACKTOKEN"
       }
     }
     stage('Generate Vars') {
