@@ -6,8 +6,7 @@ node('master') {
   properties([parameters([ 
     booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'), 
     booleanParam(defaultValue: false, description: 'Destroy All', name: 'terraformDestroy'), 
-    string(defaultValue: 'test', description: 'Please provide namespace for nexus-deployment', name: 'namespace', trim: true),
-    string(defaultValue: 'test-message', description: 'Please provide the channel name for slack', name: 'channel', trim: true)
+    string(defaultValue: 'test', description: 'Please provide namespace for nexus-deployment', name: 'namespace', trim: true)
     ]
     )])
     stage('Checkout SCM') {
@@ -15,7 +14,7 @@ node('master') {
     } 
 
     stage("Sending slack notification") {
-      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: "${channel}", color: 'green', message: 'Nexus build is successfull', tokenCredentialId: 'slack-token'
+      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Nexus build is successfull', tokenCredentialId: 'slack-token'
     }
     
     stage('Generate Vars') {
