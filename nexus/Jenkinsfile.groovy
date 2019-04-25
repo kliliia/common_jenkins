@@ -15,7 +15,7 @@ node('master') {
 
     stage("slack")
     {
-      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'nexus build is success', tokenCredentialId: 'testslack'
+      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'nexus build is success', tokenCredentialId: 'slack-token'
     }
     stage("Sending slack notification")
     {
