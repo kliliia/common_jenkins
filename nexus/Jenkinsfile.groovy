@@ -15,7 +15,7 @@ node('master') {
     stage("Sending slack notification")
     {
       withCredentials([string(credentialsId: 'slack-token', variable: 'SLACKTOKEN')]) {
-      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', message: 'The nexus job is build success ', tokenCredentialId: "$SLACKTOKEN"
+        slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', message: 'The nexus job is build success', tokenCredentialId: "slack-token"
       }
     }
     stage('Generate Vars') {
