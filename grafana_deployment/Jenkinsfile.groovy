@@ -52,8 +52,7 @@ node('master') {
   node {
     stage('Send notification') 
     slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', 
-    message: 'Mrs.Nadira deployed her code! Yay! ', token: 'yaNnXVu4qycKGgcI5M2O5XqI'
-    echo 'Hello'
+    message: 'Mrs.Nadira deployed her code! Yay! '
 }
 
 
