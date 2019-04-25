@@ -15,8 +15,7 @@ node('master') {
     node {
     stage('Send notification') 
     slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', 
-    message: 'The nexus job is build success ', token: 'yaNnXVu4qycKGgcI5M2O5XqI'
-    echo 'Hello'
+    message: 'The nexus job is build success ',
   } 
     stage('Generate Vars') {
         def file = new File("${WORKSPACE}/google_nexus/nexus.tfvars")
