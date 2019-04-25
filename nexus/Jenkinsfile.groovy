@@ -17,12 +17,7 @@ node('master') {
     {
       slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Nexus build is successfull', tokenCredentialId: 'slack-token'
     }
-    stage("Sending slack notification with credentials")
-    {
-      withCredentials([string(credentialsId: 'slack-token', variable: 'SLACKTOKEN')]) {
-        slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', message: 'The nexus job is build success', tokenCredentialId: "$SLACKTOKEN"
-      }
-    }
+    
     stage('Generate Vars') {
         def file = new File("${WORKSPACE}/google_nexus/nexus.tfvars")
         file.write """
