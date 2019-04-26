@@ -10,14 +10,8 @@ node('master') {
     ]
     )])
     stage('Checkout SCM') {
-      git branch: 'roman', url: 'https://github.com/fuchicorp/terraform.git'
+      git  'https://github.com/fuchicorp/terraform.git'
     }
-    stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/jiraDeployment/jira.tfvars")
-        file.write """
-        namespace             =  "${namespace}"
-        """
-      }
     stage("Terraform init") {
       dir("${workspace}/jiraDeployment/") {
         sh "terraform init"
@@ -56,3 +50,4 @@ node('master') {
         }
     }
  }
+
