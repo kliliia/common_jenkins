@@ -13,21 +13,21 @@ node('master') {
       git  'https://github.com/fuchicorp/terraform.git'
     }
     stage("Terraform init") {
-      dir("${workspace}/jiraDeployment/") {
+      dir("${workspace}/google_jira/") {
         sh "terraform init"
       }
     }
     stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/jiraDeployment/") {
+          dir("${workspace}/google_jira/") {
             echo "##### Terraform Applying the Changes ####"
-            sh "terraform apply --auto-approve -var-file=jira.tfvars"
+            sh "terraform apply --auto-approve"
         }
       } else {
-          dir("${WORKSPACE}/jiraDeployment") {
+          dir("${WORKSPACE}/google_jira/") {
             echo "##### Terraform Plan (Check) the Changes ####"
-            sh "terraform plan -var-file=jira.tfvars"
+            sh "terraform plan"
           }
         }
       }
@@ -35,9 +35,9 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/jiraDeployment") {
+          dir("${WORKSPACE}/google_jira/") {
             echo "##### Terraform Destroying ####"
-            sh "terraform destroy --auto-approve -var-file=jira.tfvars"
+            sh "terraform destroy --auto-approve"
           }
         }
       }
@@ -50,4 +50,3 @@ node('master') {
         }
     }
  }
-
