@@ -12,6 +12,10 @@ node('master') {
     stage('Checkout SCM') {
       git  'https://github.com/fuchicorp/terraform.git'
     }
+    
+    stage("Sending slack notification") {
+      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Nexus build is successfull', tokenCredentialId: 'slack-token'
+    }
     stage("Terraform init") {
       dir("${workspace}/google_jira/") {
         sh "terraform init"
@@ -50,3 +54,4 @@ node('master') {
         }
     }
  }
+
