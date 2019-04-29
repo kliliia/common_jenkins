@@ -6,33 +6,42 @@ node('master') {
   properties([parameters([
     booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'),
     booleanParam(defaultValue: false, description: 'Destroy All', name: 'terraformDestroy'),  
-    string(defaultValue: 'default_token', description: 'Please provide a token for vault', name: 'vault_token', trim: true),
+    string(defaultValue: 'default_token', description: 'Please provide a token for vault', name: 'secret', trim: true),
     string(defaultValue: 'test', description: 'Please provide namespace for vault-deployment', name: 'namespace', trim: true)
     ]
     )])
-    checkout scm
+    stage('Checkout SCM') {
+      git branch: 'murodbey', url: 'https://github.com/fuchicorp/terraform.git'
+    } 
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/vaultDeployment/vault.tfvars")
+        def file = new File("${WORKSPACE}/google_vault/vault.tfvars")
         file.write """
-        vault_token              =  "${vault_token}"
+        secret                   =  "${secret}"
         namespace                =  "${namespace}"
 
         """
       }
+    stage("Sending slack notification") {
+      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', 
+      channel: 'test-message', 
+      color: '"#00FF00"', 
+      message: 'The vault deployment job is build successful', 
+      tokenCredentialId: 'slack-token' 
+    }
     stage("Terraform init") {
-      dir("${workspace}/vaultDeployment/") {
+      dir("${workspace}/google_vault/") {
         sh "terraform init"
       }
     }
         stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/vaultDeployment/") {
+          dir("${workspace}/google_vault/") {
             echo "##### Terraform Applying the Changes ####"
             sh "terraform apply --auto-approve -var-file=vault.tfvars"
         }
       } else {
-          dir("${WORKSPACE}/vaultDeployment") {
+          dir("${WORKSPACE}/google_vault") {
             echo "##### Terraform Plan (Check) the Changes ####"
             sh "terraform plan -var-file=vault.tfvars"
           }
@@ -42,7 +51,7 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/vaultDeployment") {
+          dir("${WORKSPACE}/google_vault") {
             echo "##### Terraform Destroying ####"
             sh "terraform destroy --auto-approve -var-file=vault.tfvars"
           }
