@@ -28,7 +28,7 @@ node('master') {
         sh "terraform init"
       }
     }
-    stage("Terraform Apply/Plan"){
+    stage("Terraform Apply/Plan") {
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
           dir("${workspace}/google_nexus/") {
@@ -46,7 +46,7 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/nexus") {
+          dir("${WORKSPACE}/google_nexus") {
             echo "##### Terraform Destroying ####"
             sh "terraform destroy --auto-approve -var-file=nexus.tfvars"
           }
