@@ -18,7 +18,7 @@ node('master') {
     }
 
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/jira-deployment")
+        def file = new File("${WORKSPACE}/google_jira")
         file.write """
         namespace             =  "${namespace}"
         """
