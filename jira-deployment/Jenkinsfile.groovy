@@ -16,6 +16,13 @@ node('master') {
     stage("Sending slack notification") {
       slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Jira job build successfull', tokenCredentialId: 'slack-token'
     }
+
+    stage('Generate Vars') {
+        def file = new File("${WORKSPACE}/google_nexus/nexus.tfvars")
+        file.write """
+        namespace             =  "${namespace}"
+        """
+    }
     stage("Terraform init") {
       dir("${workspace}/google_jira/jira.tfvars") {
         sh "terraform init"
