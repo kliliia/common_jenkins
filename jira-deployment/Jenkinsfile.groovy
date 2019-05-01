@@ -24,19 +24,19 @@ node('master') {
         """
     }
     stage("Terraform init") {
-      dir("${workspace}/") {
+      dir("${workspace}/jira-deployment/") {
         sh "terraform init"
       }
     }
     stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/") {
+          dir("${workspace}/jira-deployment") {
             echo "##### Terraform Applying the Changes ####"
             sh "terraform apply --auto-approve"
         }
       } else {
-          dir("${WORKSPACE}/") {
+          dir("${WORKSPACE}/jira-deployment/") {
             echo "##### Terraform Plan (Check) the Changes ####"
             sh "terraform plan"
           }
@@ -46,7 +46,7 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/") {
+          dir("${WORKSPACE}/jira-deployment/") {
             echo "##### Terraform Destroying ####"
             sh "terraform destroy --auto-approve"
           }
