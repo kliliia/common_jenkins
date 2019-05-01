@@ -18,25 +18,25 @@ node('master') {
     }
 
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/google_jira/jira-deployment/")
+        def file = new File("${WORKSPACE}/jira-deployment")
         file.write """
         namespace             =  "${namespace}"
         """
     }
     stage("Terraform init") {
-      dir("${workspace}/google_jira/") {
+      dir("${workspace}/") {
         sh "terraform init"
       }
     }
     stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/google_jira/") {
+          dir("${workspace}/") {
             echo "##### Terraform Applying the Changes ####"
             sh "terraform apply --auto-approve"
         }
       } else {
-          dir("${WORKSPACE}/google_jira/") {
+          dir("${WORKSPACE}/") {
             echo "##### Terraform Plan (Check) the Changes ####"
             sh "terraform plan"
           }
@@ -46,7 +46,7 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/google_jira/") {
+          dir("${WORKSPACE}/") {
             echo "##### Terraform Destroying ####"
             sh "terraform destroy --auto-approve"
           }
