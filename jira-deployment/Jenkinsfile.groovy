@@ -14,7 +14,7 @@ node('master') {
     }
     
     stage("Sending slack notification") {
-      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Nexus build is successfull', tokenCredentialId: 'slack-token'
+      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Jira job build successfull', tokenCredentialId: 'slack-token'
     }
     stage("Terraform init") {
       dir("${workspace}/google_jira/") {
