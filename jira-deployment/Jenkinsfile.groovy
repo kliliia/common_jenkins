@@ -6,7 +6,7 @@ node('master') {
   properties([parameters([
     booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'),
     booleanParam(defaultValue: false, description: 'Destroy All', name: 'terraformDestroy'),
-    string(defaultValue: 'test', description: 'Please provide namespace for jira-deployment', name: 'namespace', trim: true)
+    string(defaultValue: 'test', description: 'Please provide namespace for google_jira', name: 'namespace', trim: true)
     ]
     )])
     stage('Checkout SCM') {
@@ -18,25 +18,25 @@ node('master') {
     }
 
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/jira-deployment")
+        def file = new File("${WORKSPACE}/google_jira")
         file.write """
         namespace             =  "${namespace}"
         """
     }
     stage("Terraform init") {
-      dir("${workspace}/jira-deployment/") {
+      dir("${workspace}/google_jira/") {
         sh "terraform init"
       }
     }
     stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${workspace}/jira-deployment") {
+          dir("${workspace}/google_jira") {
             echo "##### Terraform Applying the Changes ####"
             sh "terraform apply --auto-approve"
         }
       } else {
-          dir("${WORKSPACE}/jira-deployment/") {
+          dir("${WORKSPACE}/google_jira/") {
             echo "##### Terraform Plan (Check) the Changes ####"
             sh "terraform plan"
           }
@@ -46,7 +46,7 @@ node('master') {
     stage('Terraform Destroy') {
       if (!params.terraformApply) {
         if (params.terraformDestroy) {
-          dir("${WORKSPACE}/jira-deployment/") {
+          dir("${WORKSPACE}/google_jira/") {
             echo "##### Terraform Destroying ####"
             sh "terraform destroy --auto-approve"
           }
