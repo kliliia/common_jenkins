@@ -10,7 +10,7 @@ node('master') {
     ]
     )])
     stage('Checkout SCM') {
-      git  -b  jira_andrey 'https://github.com/fuchicorp/terraform.git'
+      git  'https://github.com/fuchicorp/terraform.git'
     }
     
     stage("Sending slack notification") {
