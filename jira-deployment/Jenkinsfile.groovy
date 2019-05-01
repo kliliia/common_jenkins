@@ -18,13 +18,13 @@ node('master') {
     }
 
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/google_nexus/nexus.tfvars")
+        def file = new File("${WORKSPACE}/google_jira/")
         file.write """
         namespace             =  "${namespace}"
         """
     }
     stage("Terraform init") {
-      dir("${workspace}/google_jira/jira.tfvars") {
+      dir("${workspace}/google_jira/") {
         sh "terraform init"
       }
     }
