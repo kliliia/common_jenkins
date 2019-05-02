@@ -50,7 +50,7 @@ node('master') {
         if (params.terraformDestroy) {
           dir("${WORKSPACE}/google_jira/") {
             echo "##### Terraform Destroying ####"
-            sh "terraform destroy --auto-approve"
+            sh "terraform destroy --auto-approve -var-file=jira.tfvars"
           }
         }
       }
