@@ -9,25 +9,20 @@ node('master') {
     string(defaultValue: 'test', description: 'Please provide namespace for jira-deployment', name: 'namespace', trim: true)
     ]
     )])
+
     stage('Checkout SCM') {
       git  'https://github.com/fuchicorp/terraform.git'
     }
-    
-    stage("Sending slack notification") {
-      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Jira job build successfull', tokenCredentialId: 'slack-token'
-    }
 
     stage('Generate Vars') {
-      sh "ls ${WORKSPACE}"
         def file = new File("${WORKSPACE}/google_jira/jira.tfvars")
         file.write """
-        namespace    =  ${params.namespace}
+        namespace    =  "${params.namespace}"
         """
-        sh "ls ${WORKSPACE}/google_jira/"
     }
 
     stage("Terraform init") {
-      dir("${workspace}/google_jira/") {
+      dir("${WORKSPACE}/google_jira/") {
         sh "terraform init"
       }
 
@@ -42,11 +37,11 @@ node('master') {
           }
 
       } else {
-          
+
             echo "##### Terraform Plan (Check) the Changes ####"
-            sh "terraform plan -var-file=${WORKSPACE}/google_jira/jira.tfvars"
+            sh "terraform plan --var-file=jira.tfvars"
           }
-        
+
       }
     }
     stage('Terraform Destroy') {
@@ -66,5 +61,8 @@ node('master') {
            """)
         }
     }
- }
 
+    stage("Sending slack notification") {
+      slackSend baseUrl: 'https://fuchicorp.slack.com/services/hooks/jenkins-ci/', channel: 'test-message', color: 'green', message: 'Jira job build successfull', tokenCredentialId: 'slack-token'
+    }
+ }
