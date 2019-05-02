@@ -21,7 +21,7 @@ node('master') {
       sh "ls ${WORKSPACE}"
         def file = new File("${WORKSPACE}/google_jira/jira.tfvars")
         file.write """
-        namespace    =  "${params.namespace}"
+        namespace    =  ${params.namespace}
         """
         sh "ls ${WORKSPACE}/google_jira/"
     }
