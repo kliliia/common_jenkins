@@ -18,7 +18,7 @@ node('master') {
     }
 
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/jira-deployment")
+        def file = new File("${WORKSPACE}/jira-deployment.tfvars")
         file.write """
         namespace             =  "${namespace}"
         """
@@ -33,7 +33,7 @@ node('master') {
         if (params.terraformApply) {
           dir("${workspace}/google_jira") {
             echo "##### Terraform Applying the Changes ####"
-            sh "terraform apply --auto-approve"
+            sh "terraform apply --auto-approve -var-file=jira-deployment.tfvars"
         }
       } else {
           dir("${WORKSPACE}/google_jira/") {
