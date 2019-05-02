@@ -6,7 +6,7 @@ node('master') {
   properties([parameters([
     booleanParam(defaultValue: false, description: 'Apply All Changes', name: 'terraformApply'),
     booleanParam(defaultValue: false, description: 'Destroy All', name: 'terraformDestroy'),
-    string(defaultValue: 'tools', description: 'Please provide namespace for jira-deployment', name: 'namespace', trim: true)
+    string(defaultValue: 'test', description: 'Please provide namespace for jira-deployment', name: 'namespace', trim: true)
     ]
     )])
     stage('Checkout SCM') {
