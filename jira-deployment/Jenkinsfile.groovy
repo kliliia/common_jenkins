@@ -39,7 +39,7 @@ node('master') {
       } else {
             dir("${WORKSPACE}/google_jira/") {
               echo "##### Terraform Plan (Check) the Changes ####"
-              sh "terraform apply --auto-approve -var-file=jira.tfvars"
+              sh "terraform plan --auto-approve -var-file=jira.tfvars"
             }
           }
 
