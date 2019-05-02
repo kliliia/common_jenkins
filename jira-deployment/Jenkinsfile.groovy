@@ -37,9 +37,10 @@ node('master') {
           }
 
       } else {
-
-            echo "##### Terraform Plan (Check) the Changes ####"
-            sh "terraform plan --var-file=jira.tfvars"
+            dir("${WORKSPACE}/google_jira/") {
+              echo "##### Terraform Plan (Check) the Changes ####"
+              sh "terraform apply --auto-approve -var-file=jira.tfvars"
+            }
           }
 
       }
