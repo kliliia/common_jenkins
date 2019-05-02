@@ -18,7 +18,7 @@ node('master') {
     }
 
     stage('Generate Vars') {
-        def file = new File("${WORKSPACE}/jira-deployment.tfvars")
+        def file = new File("${WORKSPACE}/google_jira/jira-deployment.tfvars")
         file.write """
         namespace             =  "${namespace}"
         """
