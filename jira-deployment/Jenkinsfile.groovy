@@ -19,11 +19,11 @@ node('master') {
 
     stage('Generate Vars') {
       sh "ls ${WORKSPACE}"
-        def file = new File("${WORKSPACE}/jira_google/jira.tfvars")
+        def file = new File("${WORKSPACE}/google_jira/jira.tfvars")
         file.write """
         namespace    =  "${params.namespace}"
         """
-        sh "ls ${WORKSPACE}/jira_google/"
+        sh "ls ${WORKSPACE}/google_jira/"
     }
 
     stage("Terraform init") {
@@ -36,7 +36,7 @@ node('master') {
     stage("Terraform Apply/Plan"){
       if (!params.terraformDestroy) {
         if (params.terraformApply) {
-          dir("${WORKSPACE}/jira_google/") {
+          dir("${WORKSPACE}/google_jira/") {
             echo "##### Terraform Applying the Changes ####"
             sh "terraform apply --auto-approve -var-file=jira.tfvars"
           }
@@ -44,7 +44,7 @@ node('master') {
       } else {
           
             echo "##### Terraform Plan (Check) the Changes ####"
-            sh "terraform plan -var-file=${WORKSPACE}/jira_google/jira.tfvars"
+            sh "terraform plan -var-file=${WORKSPACE}/google_jira/jira.tfvars"
           }
         
       }
