@@ -20,6 +20,7 @@ node('master'){
          yum install unzip -y
          unzip terraform_0.11.7_linux_arm.zip
          mv terraform /bin
+         chmod +x /bin/terraform
          """
        stage('Installing Helm') {
          sh """
