@@ -18,7 +18,7 @@ node('master'){
          sh """
          wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_arm.zip
          yum install unzip -y
-         unzip terraform_0.11.11_linux_amd64.zip
+         unzip terraform_0.11.7_linux_arm.zip
          mv terraform /bin
          """
        stage('Installing Helm') {
