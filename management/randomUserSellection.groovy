@@ -7,6 +7,7 @@
 
 // ["apenjiyev", "beamsoul", "chaglare", "daudmu21", "fahriddin23", "jipara", "jsartbaeva90", "Khuslentuguldur", "LeilaDev", "leventelibal", "Madina89", "mcalik77", "NadiraSaip", "Nurjan87", "rootvovak"]
 // ["Abdul", "Nurjamal", "Nodira", "Florin", "Murodbek", "Alibek", "Aidin", "Akmal", "AndrewZ", "AndrewK", "Sonya"]
+
 def notifySuccessful() {
     def random = new Random();
     def fuchiCorpUsers = ["apenjiyev", "beamsoul", "chaglare", "daudmu21", "fahriddin23", "jipara", "jsartbaeva90", "Khuslentuguldur", "LeilaDev", "leventelibal", "Madina89", "mcalik77", "NadiraSaip", "Nurjan87", "rootvovak"]
@@ -20,7 +21,6 @@ def notifySuccessful() {
 
     node {
       properties([[
-        $class: 'JiraProjectProperty'],
         parameters([string(defaultValue: 'https://github.com/fuchicorp/main-fuchicorp/issues/20',
         description: 'Please provide which ticker you want to assign.',
         name: 'issueUrl', trim: true)])])
