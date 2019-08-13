@@ -5,9 +5,11 @@
 * email: sadykovfarkhod@gmail.com
 */
 
+// ["apenjiyev", "beamsoul", "chaglare", "daudmu21", "fahriddin23", "jipara", "jsartbaeva90", "Khuslentuguldur", "LeilaDev", "leventelibal", "Madina89", "mcalik77", "NadiraSaip", "Nurjan87", "rootvovak"]
+// ["Abdul", "Nurjamal", "Nodira", "Florin", "Murodbek", "Alibek", "Aidin", "Akmal", "AndrewZ", "AndrewK", "Sonya"]
 def notifySuccessful() {
     def random = new Random();
-    def fuchiCorpUsers = ["Abdul", "Nurjamal", "Nodira", "Florin", "Murodbek", "Alibek", "Aidin", "Akmal", "AndrewZ", "AndrewK", "Sonya"]
+    def fuchiCorpUsers = ["apenjiyev", "beamsoul", "chaglare", "daudmu21", "fahriddin23", "jipara", "jsartbaeva90", "Khuslentuguldur", "LeilaDev", "leventelibal", "Madina89", "mcalik77", "NadiraSaip", "Nurjan87", "rootvovak"]
 
     def randomKey = random.nextInt(fuchiCorpUsers.size())
     println("${fuchiCorpUsers[randomKey]} you are sellected.")
