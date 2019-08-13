@@ -20,7 +20,7 @@ def notifySuccessful() {
     def ticketLink   = "${params.issueUrl}"
 
     node {
-      properties([[
+      properties([
         parameters([string(defaultValue: 'https://github.com/fuchicorp/main-fuchicorp/issues/20',
         description: 'Please provide which ticker you want to assign.',
         name: 'issueUrl', trim: true)])])
