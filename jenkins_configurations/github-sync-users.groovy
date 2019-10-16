@@ -26,6 +26,8 @@ String git_hub_auth_id  = "${System.getenv('JENKINS_GITHUB_AUTH_ID')}"
 String git_hub_auth_secret  = "${System.getenv('JENKINS_GITHUB_AUTH_SECRET')}"
 gitToken                   = "${System.getenv('GIT_TOKEN')}"
 
+properties([pipelineTriggers([cron('*/10 * * * *')])])
+
 // gitToken = System.getenv().get("GIT_TOKEN")
 
 github_realm = github_realm as JSONObject
