@@ -43,7 +43,7 @@ if(!Jenkins.instance.isQuietingDown()) {
        SecurityRealm github_realm = new GithubSecurityRealm(githubWebUri, githubApiUri, clientID, clientSecret, oauthScopes)
        //check for equality, no need to modify the runtime if no settings changed
        if(!github_realm.equals(Jenkins.instance.getSecurityRealm())) {
-           Jenkins.instance.setSecurityRealm(github_realm)
+           // Jenkins.instance.setSecurityRealm(github_realm)
            println 'Security realm configuration has changed.  Configured GitHub security realm.'
        } else {
            println 'Nothing changed.  GitHub security realm already configured.'
@@ -251,4 +251,4 @@ access.readers.each { l ->
   roleBasedAuthenticationStrategy.assignRole(RoleType.Global, readRole, l);
 }
 
-Jenkins.instance.save()
+// Jenkins.instance.save()
