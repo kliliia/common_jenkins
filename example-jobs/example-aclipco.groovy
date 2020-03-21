@@ -67,6 +67,7 @@ def slavePodTemplate = """
                   }
               }
           }
+          
           stage("Docker Push") {
               container("docker") {
                 docker.withRegistry('https://docker.elb-class.com', 'nexus-docker-creds') {
@@ -74,5 +75,7 @@ def slavePodTemplate = """
                 }
               }
           }
+          
       }
+        
     }
