@@ -67,7 +67,7 @@ def slavePodTemplate = """
 
           stage("Push image"){
             container("docker"){
-                docker.withRegistry('https://docker.fuchicorp.com', 'nexus-docker-creds') {
+                docker.withRegistry('https://docker.spacextech.net', 'nexus-docker-creds') {
                 dockerImage.push("0.${BUILD_NUMBER}")
               }
             }
