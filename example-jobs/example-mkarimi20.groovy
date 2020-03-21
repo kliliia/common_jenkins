@@ -51,11 +51,15 @@ def slavePodTemplate = """
             hostPath:
               path: /var/run/docker.sock
     """
+    
     podTemplate(name: k8slabel, label: k8slabel, yaml: slavePodTemplate) {
       node(k8slabel) {
+          
+          
           stage("Pull SCM") {
               git 'https://github.com/fuchicorp/fuchicorp-website.git'
           }
+          
           stage("Docker Build") {
               container("docker") {
                   dir("${WORKSPACE}/deployments/docker"){
@@ -63,12 +67,15 @@ def slavePodTemplate = """
                   }
               }
           }
+          
           stage("Docker Push") {
               container("docker") {
-                docker.withRegistry('https://docker.tunscotech.com', 'nexus-docker-creds') {
+                docker.withRegistry('https://docker.elb-class.com', 'nexus-docker-creds') {
                   dockerImage.push("0.${BUILD_NUMBER}")
                 }
               }
           }
+          
       }
+        
     }
