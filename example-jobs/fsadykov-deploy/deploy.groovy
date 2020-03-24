@@ -68,7 +68,7 @@ def slavePodTemplate = """
             container("fuchicorptools") {
                 dir("${WORKSPACE}/example-jobs/fsadykov-deploy") {
                     sh 'terraform init'
-                     if("${TERRAFORM_APPLY}" == "true") {
+                    if("${TERRAFORM_APPLY}" == "true") {
                         println("I will apply changes")
                     } else {
                         println("I will plan the changes")
