@@ -9,7 +9,8 @@ image:
   tag: 0.2
   pullPolicy: IfNotPresent
 
-imagePullSecrets: nexus-creds-huseyin
+imagePullSecrets: 
+  - name: nexus-creds-huseyin
 nameOverride: ""
 fullnameOverride: ""
 
