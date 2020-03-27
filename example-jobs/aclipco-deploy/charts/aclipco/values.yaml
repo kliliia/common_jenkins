@@ -1,4 +1,4 @@
-# Default values for bkarakas.
+# Default values for aclipco.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -25,7 +25,7 @@ ingress:
   path: /
   hosts:
     - ${deployment_endpoint}
-  tls: 
+  tls:
    - secretName: chart-example-aclipco
      hosts:
        - ${deployment_endpoint}
