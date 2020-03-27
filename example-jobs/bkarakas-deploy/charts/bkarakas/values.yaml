@@ -9,7 +9,8 @@ image:
   tag: 0.8
   pullPolicy: IfNotPresent
 
-imagePullSecrets: nexus-creds-bkarakas
+imagePullSecrets: 
+  name: nexus-creds-bkarakas
 nameOverride: ""
 fullnameOverride: ""
 
