@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: docker.tazagul.net/example
-  tag: 0.2
+  repository: docker.elb-class.com/example
+  tag: 0.19
   pullPolicy:
-  pullsecret: nexus-creds-huseyin
+  pullsecret: nexus-creds
 
 nameOverride: ""
 fullnameOverride: ""
