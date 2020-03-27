@@ -61,12 +61,12 @@ def slavePodTemplate = """
             ])
  
         stage("Pull SCM") {
-          git branch: 'deploy/mkarimi20', url: 'https://github.com/fuchicorp/common_jenkins.git'
+          git branch: 'deploy-mkarimi', url: 'https://github.com/fuchicorp/common_jenkins.git'
         }
 
         stage("Apply/Plan")  {
             container("fuchicorptools") {
-                dir("${WORKSPACE}/example-jobs/deploy/mkarimi20") {
+                dir("${WORKSPACE}/example-jobs/deploy-mkarimi") {
                     sh 'terraform init'
                     if("${TERRAFORM_APPLY}" == "true") {
                         println("I will apply changes")
