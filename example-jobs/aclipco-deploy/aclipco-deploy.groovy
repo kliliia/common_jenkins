@@ -71,12 +71,14 @@ def slavePodTemplate = """
                   dir("${WORKSPACE}/example-jobs/aclipco-deploy") {
                       sh 'terraform init'
           if("${TERRAFORM_APPLY}" == "true") {
-              println("I will apply changes")
-          } else {
-              println("I will plan the changes")
-          }
-          }
+                        println("I will apply changes")
+                        sh "terraform apply -auto-approve"
+                    } else {
+                        println("I will plan the changes")
+                        sh "terraform plan"
+                    }
+                }
+            }
+        }
       }
-    }
-    }
     }

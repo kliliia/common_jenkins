@@ -1,3 +1,3 @@
-variable "some_variable" {
-  default = "Hello"
+variable "deployment_endpoint" {
+  default = "aclipco.fuchicorp.com"
 }
