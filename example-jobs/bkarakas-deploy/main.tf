@@ -5,4 +5,8 @@ module "bkarakas_deploy" {
   deployment_environment = "dev"
   deployment_endpoint    = "${var.deployment_endpoint}"
   deployment_path        = "bkarakas"
+  
+  template_custom_vars = {
+    deployment_image = "${var.deployment_image}"
+  }
 }
