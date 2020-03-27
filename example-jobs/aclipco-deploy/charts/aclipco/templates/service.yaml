@@ -3,15 +3,12 @@ kind: Service
 metadata:
   name: {{ include "aclipco.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "aclipco.name" . }}
-    helm.sh/chart: {{ include "aclipco.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{ include "aclipco.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
       name: http
   selector:
