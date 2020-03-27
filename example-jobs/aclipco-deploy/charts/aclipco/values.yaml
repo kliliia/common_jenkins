@@ -5,9 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+  repository: docker.elb-class.com
+  tag: 0.7
+  pullPolicy: 
+  pullsecret: nexus-creds
 
 nameOverride: ""
 fullnameOverride: ""
@@ -17,17 +18,17 @@ service:
   port: 80
 
 ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   path: /
   hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+    - ${deployment_endpoint}
+  tls:
+    - secretName: chart-example-aclipco
+      hosts:
+       - ${deployment_endpoint}
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
