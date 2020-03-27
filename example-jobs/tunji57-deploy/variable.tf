@@ -1,3 +1,3 @@
 variable "deployment_endpoint" {
-  default = "tunji57.tunscotech.com"
+  default = "tunji57.fuchicorp.com"
 }
