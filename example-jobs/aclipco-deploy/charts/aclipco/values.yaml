@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: docker.elb-class.com
+  repository: docker.elb-class.com/example
   tag: 0.7
   pullPolicy: 
   pullsecret: nexus-creds
