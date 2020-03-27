@@ -5,7 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: ${deployment_image}
+  repository: docker.burakkarakas.net/example
+  tag: 0.8
   pullPolicy: IfNotPresent
 
 imagePullSecrets: 

@@ -1,12 +1,9 @@
 module "bkarakas_deploy" {
 
   source  = "fuchicorp/chart/helm"
-  deployment_name        = "bkarakas-website-deploy"
+  deployment_name        = "bkarakas"
   deployment_environment = "dev"
   deployment_endpoint    = "${var.deployment_endpoint}"
   deployment_path        = "bkarakas"
   
-  template_custom_vars = {
-    deployment_image = "${var.deployment_image}"
-  }
 }
