@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pristine-skein-269300",
+  "private_key_id": "a4774208407ed4be59b9d17cfd67e862852b471a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQClkf3PQKjIPWI/\n03KgGCa5pGIlbPQkaOpSQeciY5epJsHioJ4W+WMXs0gIDR206g63zJ5CIse+B35y\n28nJ4cJWqMH/VqEh/YXiiJtaclMidZUE0Tf2PZOllk0X2rLPKiaINTDkoUIMiguK\nIZpeQ08A9QFLejSb6FEUdDfMHNLQ7c87VA2599DIGWINpyXrvyipZHG0vxOmtGY/\nfRtN6Stuvhdnkb7P7+fOZ7XL66zkx5kMeZy6f4sM+TPs1mPECShtBtqLLTtc82qC\nKwfRU+aThmPhIRUra/Iw3UOccaeMPpmu2cDQguMIXK6uSluHiAHjZpOyM0X1O/K3\npIw6cGXTAgMBAAECggEACQXBolpQWEkat4Za8rpzhx5GyD9TC+uOXq5/XUe2wLL/\nUc2Vj9mbOslm8s60Kw2uK6SXjdxorMRVHFvkd9SOSzv7BmJpeXlf+GOgA6Jt7AIi\n/WuL9HvlNdrQ7KyFnfXFZRrGRU88UtlFnmC3vCHy24cpFjyHQrpli2B3Qe+NgBu+\n8Gyqak56+S+KF3tlrCxwyxR/V1o1h+sFd3jIeR51ZtINbxiAksawdX1m1qnhTPmw\n+8xGnfmJ05nl1jeyvM7JqwrN0EgGWKHgtgzs+gGRYyinRSR2xkYcB9zFzAIYHJfj\nczdpK0jVs4rLKWtZx1v4BEAyaXLGOYlEinqj5QP5gQKBgQDgEMIPvxmxp5aka1Po\nWaCTZeTXlQWD9FjQykBFuyrrgb9ALPnxEvZ4gY5Oxktg0fOKGNeQqXXFDYgLQjtS\n/1jo1oDOHfhgQDy+uKPvsAV1/o2RyJhvR52gLC4DMZUKON/9Klo/NLf/dL2VW9n2\nKW+UeBxigXCvwMLV1M4dMRbIoQKBgQC9Kvsc+PCSUeL9W5Z9r2fFzYNY2zqrNqSZ\noMEpvBvH+174yg6UlnZcB2AkEP73ttxsmtkqJ62zR2H0bQpXyu9Xlve49XYjFNw7\nTK8RIlGW507CrMqBeGkt5IN0WtAV5KUYcrUAStbonXplJW8RTjM7wG7ADdZxMeGS\nXfNFV6LV8wKBgQCAzeFg//AbSkW02uXvSaafVRHKRCZZhpuP2tQ7wa6Yl4uDrtc3\nmDkLaR6PdjpavBaOKl2xEVlcH703C6niuls37ic5Vc00N3k0AhxravqYq+5iAbhv\nL/IS45LHzzboG23XsQMUFpA3T7q0I4sWkRdNeAaJMfO/dMYL+jtKWK/KQQKBgEZm\nZooDw1RREU8E9N7VlqMwtr8s54qsjVl3UCv+C8DDNjcUy5RU4ruhKxCBGsKJ1UK9\n5jAgEC72U+gpZH4D0ksgrhSxlUO9EbEn+sc/pGmqr88Xi03fyBUCREHbQjHDpAWT\nOvVe5NgxM0nNQqaIGd0U4qKrA7GgxLg6Kr0Vvk4tAoGAUQdpZ5u0+Z7G1AWqzLxs\nRaada/od+iB+AzUKaakYzrRgvRPsBrcLKumu+/TJAS4+D3hCAV9V3HNGQtqkA2MT\niCxqTiHVHfB6vkAHBCaZrTKlHZjurlUwsHNQuorZk+Nk4LyyjCVpQkei1AHY9JBM\nedHRnU1mHOB4xibUCu4x05E=\n-----END PRIVATE KEY-----\n",
+  "client_email": "common-team-6@pristine-skein-269300.iam.gserviceaccount.com",
+  "client_id": "110726974037027901749",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/common-team-6%40pristine-skein-269300.iam.gserviceaccount.com"
+}
