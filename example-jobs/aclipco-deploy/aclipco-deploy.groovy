@@ -63,7 +63,7 @@ def slavePodTemplate = """
 
 
           stage("Pull SCM") {
-              git git branch: 'feature/aclipco_deploy_pipe', url: 'https://github.com/fuchicorp/common_jenkins.git'
+               git branch: 'feature/aclipco_deploy_pipe', url: 'https://github.com/fuchicorp/common_jenkins.git'
           }
 
           stage("Apply/Plan") {
