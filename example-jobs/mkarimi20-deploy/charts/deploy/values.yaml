@@ -10,7 +10,7 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: 
- - name: nexus-docker-creds
+ - name: nexus-creds-huseyin
 nameOverride: ""
 fullnameOverride: ""
 
