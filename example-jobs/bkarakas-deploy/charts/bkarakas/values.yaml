@@ -5,34 +5,29 @@
 replicaCount: 1
 
 image:
-  repository: docker.burakkarakas.net/example
-  tag: 0.8
+  repository: nginx
+  tag: stable
   pullPolicy: IfNotPresent
 
-imagePullSecrets: 
-  - name: nexus-creds-bkarakas
 nameOverride: ""
 fullnameOverride: ""
 
 service:
   type: ClusterIP
   port: 80
-  
 
 ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
   hosts:
-    - host: ${deployment_endpoint}
-      paths:
-      - /
-
-  tls: 
-   - secretName: chart-example-bkarakas
-     hosts:
-       - ${deployment_endpoint}
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
