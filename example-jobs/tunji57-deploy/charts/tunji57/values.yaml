@@ -7,10 +7,10 @@ replicaCount: 1
 image:
   repository: docker.tunscotech.com/example
   tag: 0.8
-  pullPolicy: IfNotPresent
+  pullPolicy: 
+  pullsecret: nexus-creds-tunji57
 
-imagePullSecrets: 
-  - name: nexus-creds-tunji57
+
 nameOverride: ""
 fullnameOverride: ""
 
