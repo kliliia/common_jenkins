@@ -66,7 +66,7 @@ def slavePodTemplate = """
 
         stage("Apply/Plan")  {
             container("fuchicorptools") {
-                dir("${WORKSPACE}/example-jobs/deploy-mkarimi") {
+                dir("${WORKSPACE}/example-jobs/mkarimi20-deploy") {
                     sh 'terraform init'
                     if("${TERRAFORM_APPLY}" == "true") {
                         println("I will apply changes")
