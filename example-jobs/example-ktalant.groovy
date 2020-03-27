@@ -56,7 +56,7 @@ def slavePodTemplate = """
           stage("Pull SCM"){
           git 'https://github.com/fuchicorp/fuchicorp-website.git'
           }
-          
+
           stage("Docker Build"){
               container("docker"){
                   dir("$WORKSPACE/deployments/docker"){
@@ -67,7 +67,7 @@ def slavePodTemplate = """
 
           stage("Push image"){
             container("docker"){
-                docker.withRegistry('https://docker.spacextech.net', 'nexus-docker-creds') {
+                docker.withRegistry('https://docker.spacextech.net', 'nexus-creds-talant') {
                 dockerImage.push("0.${BUILD_NUMBER}")
               }
             }
