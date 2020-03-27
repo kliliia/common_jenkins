@@ -8,9 +8,7 @@ image:
   repository: docker.burakkarakas.net/example
   tag: 0.8
   pullPolicy: IfNotPresent
-
-imagePullSecrets: 
-  - name: nexus-creds-bkarakas
+  pullsecret: nexus-creds-bkarakas
 
 nameOverride: ""
 fullnameOverride: ""
