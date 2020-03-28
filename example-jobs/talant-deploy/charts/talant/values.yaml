@@ -5,11 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: ${docker_address}
-  tag: ${image_tag}
+  repository: docker.spacextech.net
+  tag: 0.1
   pullPolicy: IfNotPresent
 imagePullSecrets:
-  - name: ${docker_cred_name}
+  - name: nexus-creds-talant
 nameOverride: ""
 fullnameOverride: ""
 
