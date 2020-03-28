@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: docker.spacextech.net/example
-  tag: 0.1
+  tag: 0.14
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: nexus-creds-talant
