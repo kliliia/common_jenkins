@@ -71,7 +71,8 @@ def slavePodTemplate = """
                     if("${TERRAFORM_APPLY}" == "true") {
                         println("I will apply changes")
                         sh "terraform apply -auto-approve"
-                    } else {
+                    }
+                    else {
                         println("I will plan the changes")
                         sh "terraform plan"
                     }
