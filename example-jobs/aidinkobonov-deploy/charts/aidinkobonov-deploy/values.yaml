@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: docker.csamatov.net/example
-  tag: latest
+  tag: 0.22
   pullPolicy: IfNotPresent
 
 imagePullSecrets: 
