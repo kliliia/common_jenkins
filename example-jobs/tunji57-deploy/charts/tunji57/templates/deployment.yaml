@@ -19,12 +19,12 @@ spec:
         app.kubernetes.io/name: {{ include "tunji57.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      imagePullSecret:
+        - name: {{ .Values.image.pullsecret }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          imagePullSecret:
-            - name: {{ .Values.image.pullsecret }}
           ports:
             - name: http
               containerPort: 80
