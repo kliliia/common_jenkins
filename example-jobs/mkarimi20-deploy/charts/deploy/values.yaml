@@ -10,7 +10,7 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: 
- - name: nexus-creds-huseyin
+ - name: nexus-creds-mkarimi
 nameOverride: ""
 fullnameOverride: ""
 
@@ -40,14 +40,16 @@ service:
 
 ingress:
   enabled: true
-  annotations: 
+  annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
     - host: ${deployment_endpoint}
-      paths: /
+      paths:
+      - /
+
   tls: 
-   - secretName: chart-example-mkarimi20
+   - secretName: chart-example-hakten
      hosts:
        - ${deployment_endpoint}
 
