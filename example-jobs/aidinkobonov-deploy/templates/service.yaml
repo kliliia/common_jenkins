@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "aidinkobonov-website-deploy.fullname" . }}
+  name: {{ include "aidinkobonov-deploy.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "aidinkobonov-website-deploy.name" . }}
-    helm.sh/chart: {{ include "aidinkobonov-website-deploy.chart" . }}
+    app.kubernetes.io/name: {{ include "aidinkobonov-deploy.name" . }}
+    helm.sh/chart: {{ include "aidinkobonov-deploy.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "aidinkobonov-website-deploy.name" . }}
+    app.kubernetes.io/name: {{ include "aidinkobonov-deploy.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
