@@ -1,3 +1,3 @@
 variable "deployment_endpoint" {
-  default = "aclipconew.fuchicorp.com"
+  default = "aclipco.fuchicorp.com"
 }
