@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: docker.csamatov.net
+  repository: docker.csamatov.net/example
   tag: stable
   pullPolicy: IfNotPresent
 
