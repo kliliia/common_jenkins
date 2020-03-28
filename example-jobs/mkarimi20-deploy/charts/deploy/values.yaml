@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: docker.elb-class.com/mkarimi:06
-  #tag: 0.6
+  repository: docker.elb-class.com/mkarimi
+  tag: *
   pullPolicy: IfNotPresent
 
 imagePullSecrets: 
