@@ -4,5 +4,5 @@ module "talant_module" {
   deployment_name        = "alisait"
   deployment_environment = "dev"
   deployment_endpoint    = "${var.deployment_endpoint}"
-  deployment_path        = "alisahp"
+  deployment_path        = "alisait"
 }
