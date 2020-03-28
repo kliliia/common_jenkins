@@ -7,11 +7,10 @@ replicaCount: 1
 image:
   repository: docker.elb-class.com/aclipco
   tag: 0.1
-  pullPolicy:
-  pullsecret: nexus-creds-aclipco
+  pullPolicy: IfNotPresent
 
-nameOverride: ""
-fullnameOverride: ""
+imagePullSecrets:
+  - name: nexus-creds-aclipco
 
 service:
   type: ClusterIP
