@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: docker.elb-class.com/example
-  tag: 0.24
+  repository: docker.elb-class.com/aclipco
+  tag: 0.1
   pullPolicy:
   pullsecret: nexus-creds-aclipco
 
