@@ -75,7 +75,6 @@ def slavePodTemplate = """
                         sh "terraform plan"
                     }
                 }
-
             }
         }
       }
