@@ -25,7 +25,8 @@ ingress:
   hosts:
     - ${deployment_endpoint}
       paths:
-      - /
+        - /
+
 
   tls:
    - secretName: chart-talant-secret
