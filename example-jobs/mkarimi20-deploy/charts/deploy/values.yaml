@@ -49,7 +49,7 @@ ingress:
   tls: 
    - secretName: chart-example-mkarimi20
      hosts:
-      - - ${deployment_endpoint}
+       - ${deployment_endpoint}
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
