@@ -26,11 +26,11 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   path: /
   hosts:
-    - aidinkobonov-deploy.fuchicorp.com
+    - ${var.deployment_endpoint}
   tls: 
    - secretName: chart-example-aidinkobonov
      hosts:
-       - aidinkobonov-deploy.fuchicorp.com
+       - ${var.deployment_endpoint}
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
