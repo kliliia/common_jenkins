@@ -3,5 +3,5 @@ module "helm_deploy" {
   deployment_name        = "aidinkobonov-deploy"
   deployment_environment = "dev"
   deployment_endpoint    = "aidinkobonov.fuchicorp.com"
-  deployment_path        = "aidinkobonov"
+  deployment_path        = "aidinkobonov-deploy"
 }
