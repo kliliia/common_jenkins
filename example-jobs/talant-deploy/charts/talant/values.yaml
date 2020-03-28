@@ -22,8 +22,7 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  path:
-    - /
+  path: /
   hosts:
     - ${deployment_endpoint}
 
