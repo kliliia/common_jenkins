@@ -1,4 +1,4 @@
-module "talant_module" {
+module "alisait_module" {
 
   source                 = "fuchicorp/chart/helm"
   deployment_name        = "alisait"
