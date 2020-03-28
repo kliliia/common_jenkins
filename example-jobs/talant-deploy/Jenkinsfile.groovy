@@ -61,7 +61,7 @@ def slavePodTemplate = """
             ])
 
         stage("Pull SCM") {
-          git branch: 'feature/bkarakas', url: 'https://github.com/fuchicorp/common_jenkins.git'
+          git branch: 'feature/ktalant', url: 'https://github.com/fuchicorp/common_jenkins.git'
         }
 
         stage("Apply/Plan")  {
@@ -70,7 +70,8 @@ def slavePodTemplate = """
                     sh 'terraform init'
                     if("${TERRAFORM_APPLY}" == "true") {
                         sh "terraform apply -auto-approve"
-                    } else {
+                    }
+                    else {
                         sh "terraform plan"
                     }
                 }
