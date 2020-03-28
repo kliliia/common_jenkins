@@ -1,3 +1,3 @@
 variable "deployment_endpoint" {
-  default = "talant.spacextech.net"
+  default = "talant.fuchicorp.com"
 }
