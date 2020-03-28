@@ -23,7 +23,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          imagePullSecret:
+          imagePullSecrets:
             - name: {{ .Values.image.pullsecret }}
           ports:
             - name: http
