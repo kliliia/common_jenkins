@@ -19,7 +19,7 @@ spec:
         app.kubernetes.io/name: {{ include "tunji57.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      imagePullSecret:
+      imagePullSecrets:
         - name: {{ .Values.image.pullsecret }}
       containers:
         - name: {{ .Chart.Name }}
