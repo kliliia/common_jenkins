@@ -8,9 +8,7 @@ image:
   repository: docker.csamatov.net/example
   tag: 0.22
   pullPolicy: IfNotPresent
-
-imagePullSecrets: 
-  - name: team2-nexus-creds
+  pullsecret: team2-nexus-creds
 
 nameOverride: ""
 fullnameOverride: ""
