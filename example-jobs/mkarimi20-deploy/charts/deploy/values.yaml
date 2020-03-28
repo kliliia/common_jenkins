@@ -49,7 +49,7 @@ ingress:
       - /
 
   tls: 
-   - secretName: chart-example-hakten
+   - secretName: chart-example-aclipco
      hosts:
        - ${deployment_endpoint}
 
