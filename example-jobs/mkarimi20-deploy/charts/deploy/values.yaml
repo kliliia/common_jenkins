@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: docker.elb-class.com/mkarimi
-  tag: *
+  repository: docker.elb-class.com/v2/mkarimi
+  tag: manifests/0.6
   pullPolicy: IfNotPresent
 
 imagePullSecrets: 
