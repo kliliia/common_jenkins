@@ -26,11 +26,11 @@ ingress:
     kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - aidinkobonov-deploy.fuchicorp.com
-  tls: []
+    - ${var.deployment_endpoint}
+  tls: 
    - secretName: chart-example-tls
      hosts:
-       - aidinkobonov-deploy.fuchicorp.com
+       - ${var.deployment_endpoint}
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
