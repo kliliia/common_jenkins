@@ -28,6 +28,7 @@ def slavePodTemplate = """
               name: docker-sock
             - mountPath: /etc/secrets/service-account/
               name: google-service-account
+
         - name: fuchicorptools
           image: fuchicorp/buildtools
           imagePullPolicy: Always
@@ -51,31 +52,30 @@ def slavePodTemplate = """
             hostPath:
               path: /var/run/docker.sock
     """
-    
     podTemplate(name: k8slabel, label: k8slabel, yaml: slavePodTemplate) {
-      node(k8slabel) {
-          
-          
-          stage("Pull SCM") {
+          node(k8slabel) {
+            stage("pull SCM") {
               git 'https://github.com/fuchicorp/fuchicorp-website.git'
-          }
-          
-          stage("Docker Build") {
-              container("docker") {
-                  dir("${WORKSPACE}/deployments/docker"){
-                      dockerImage = docker.build("example")
-                  }
-              }
-          }
-          
-          stage("Docker Push") {
-              container("docker") {
-                docker.withRegistry('https://docker.tazagul.net', 'nexus-docker-tazagul') {
-                  dockerImage.push("0.${BUILD_NUMBER}")
+            }
+
+            stage("Docker Build"){
+              container("docker"){
+                dir("${WORKSPACE}/deployments/docker"){
+                  dockerImage = docker.build("example")
                 }
               }
+            }
+
+            stage("Docker Push"){
+              container("docker"){
+                docker.withRegistry('https://docker.spacextech.net', 'nexus-docker-creds') {
+                  dockerImage.push("latest")
+                  //  dockerImage.push("0.${BUILD_NUMBER}")
+
+                }
+              }
+            }
+
+
           }
-          
-      }
-        
-    }
+        }
