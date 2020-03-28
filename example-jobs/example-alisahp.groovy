@@ -70,7 +70,7 @@ def slavePodTemplate = """
           
           stage("Docker Push") {
               container("docker") {
-                docker.withRegistry('https://docker.mybestsea.com', 'nexus-docker-creds') {
+                docker.withRegistry('https://nexus.mybestsea.com', 'nexus-creds-alisahp') {
                   dockerImage.push("0.${BUILD_NUMBER}")
                 }
               }
