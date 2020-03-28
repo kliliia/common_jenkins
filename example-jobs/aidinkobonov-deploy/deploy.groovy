@@ -73,7 +73,7 @@ def slavePodTemplate = """
                         sh "terraform apply -auto-approve"
                     } else {
                         println("I will plan the changes")
-                        sh "terraform plan"
+                        sh "terraform destroy"
                     }
                 }
                
