@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: docker.tazagul.net/fuchicorp
-  tag: 0.1
+  repository: docker.tazagul.net/example
+  tag: 0.14
   pullPolicy: IfNotPresent
 imagePullSecrets:
   - name: nexus-creds-alisahp
