@@ -19,8 +19,8 @@ spec:
         app.kubernetes.io/name: {{ include "csamatov96-deploy.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-#      imagePullSecrets:  #########################################
-#        - name: {{ .Values.image.pullsecret }} ###################
+      imagePullSecrets:  #########################################
+        - name: {{ .Values.image.pullsecret }} ###################
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
