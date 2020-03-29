@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "anara.fullname" . }}-test-connection"
+  labels:
+    {{- include "anara.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "anara.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
