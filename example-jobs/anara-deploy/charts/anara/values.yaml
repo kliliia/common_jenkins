@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: docker.csamatov.net/example
-  tag: 0.22
+  tag: 0.11
   pullPolicy:
   pullSecret: nexus-creds-anara
 
