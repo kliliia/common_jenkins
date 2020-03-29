@@ -3,7 +3,10 @@ kind: Service
 metadata:
   name: {{ include "anara.fullname" . }}
   labels:
-    {{- include "anara.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "anara.name" . }}
+    helm.sh/chart: {{ include "anara.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "anara.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "anara.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
