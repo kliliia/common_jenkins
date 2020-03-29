@@ -5,10 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: docker.csamatov.net/example
+  tag: 0.22
   pullPolicy: IfNotPresent
 
-imagePullSecrets: []
+imagePullSecrets: nexus-creds-anara
 nameOverride: ""
 fullnameOverride: ""
 
@@ -45,9 +46,9 @@ ingress:
   hosts:
     - ${deployment_endpoint}      
   tls: 
-   - secretName: chart-example-anara
-   hosts:
-    - ${deployment_endpoint}
+   - secretName: chart-example-anara 
+     hosts:
+     - ${deployment_endpoint}
     
 
 resources: {}
