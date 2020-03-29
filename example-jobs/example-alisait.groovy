@@ -54,10 +54,8 @@ def slavePodTemplate = """
     
     podTemplate(name: k8slabel, label: k8slabel, yaml: slavePodTemplate) {
       node(k8slabel) {
-          
-          
-          stage("Pull SCM") {
-              git 'https://github.com/fuchicorp/fuchicorp-website.git'
+        stage("Pull SCM") {
+          git 'https://github.com/fuchicorp/fuchicorp-website.git'
           }
           
           stage("Docker Build") {
