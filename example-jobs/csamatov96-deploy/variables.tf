@@ -1,3 +1,3 @@
 variable "deployment_endpoint" {
-  default = "csamatov96-deployer.fuchicorp.com"
+  default = "csamatov96-deploy.fuchicorp.com"
 }
