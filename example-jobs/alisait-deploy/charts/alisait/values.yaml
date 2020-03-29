@@ -27,7 +27,7 @@ ingress:
     - ${deployment_endpoint}
 
   tls:
-   - secretName: chart-alisait-secret
+   - secretName: chart-example-alisait
      hosts:
        - ${deployment_endpoint}
 
