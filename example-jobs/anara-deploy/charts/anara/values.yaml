@@ -5,10 +5,9 @@
 replicaCount: 1
 
 image:
-  repository: docker.csamatov.net/example
-  tag: 0.22
-  pullPolicy:
-  pullSecret: nexus-creds-anara
+  repository: nginx
+  tag: stable
+  pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
@@ -18,18 +17,17 @@ service:
   port: 80
 
 ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - ${deployment_endpoint}
-  tls:
-    - secretName: chart-anara-secret
-      hosts:
-        - ${deployment_endpoint}
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
