@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "csamatov96-deploy.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "csamatov96-deploy.name" . }}
+    helm.sh/chart: {{ include "csamatov96-deploy.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "csamatov96-deploy.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
